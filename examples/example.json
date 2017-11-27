@@ -1,0 +1,22 @@
+{
+  "tmpDir": "/tmp",
+  "proxy": {
+    "port": 4444,
+    "baseUrl": "/wd/hub"
+  },
+  "chromedriver": {
+    "chromedriverPath": "/usr/bin/chromedriver",
+    "port": 4445,
+    "autoRestart": true
+  },
+  "chromePool": {
+    "enable": true,
+    "chromePath": "/usr/bin/google-chrome-unstable",
+    "reuse": true,
+    "chromeAgent": {
+      "screenRecorder": {
+        "videoFormat": "mp4"
+      }
+    }
+  }
+}
