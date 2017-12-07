@@ -72,7 +72,7 @@ Feel free to add support for any of the languages that the selenium project supp
 
 ## Issues
 
-Please report any issues using the [ChromeDriver Proxy issue tracker](issues). When using
+Please report any issues using the [ChromeDriver Proxy issue tracker](https://github.com/ZipRecruiter/chromedriver-proxy/issues). When using
 the issue tracker
 
 - __Do__ include a detailed description of the problem.
