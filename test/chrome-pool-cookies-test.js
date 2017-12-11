@@ -53,6 +53,7 @@ describe('Proxy with chrome pool cookie test', () => {
       chromePool: {
         enable: true,
         reuse: true,
+        chromePath: '/usr/bin/google-chrome-beta',
         clearStorage: [
           {
             origin: '.localhost',

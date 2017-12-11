@@ -1,0 +1,32 @@
+language: node_js
+env:
+  - CHROMEDRIVER_BIN=/tmp/chromedriver
+matrix:
+  include:
+    - node_js: "8"
+dist: trusty
+sudo: false
+cache:
+  directories:
+    - node_modules
+    - chrome
+before_script:
+  - curl https://chromedriver.storage.googleapis.com/2.33/chromedriver_linux64.zip > /tmp/chromedriver_linux64.zip
+  - unzip -d /tmp /tmp/chromedriver_linux64.zip
+  - /tmp/chromedriver --version
+  - google-chrome-beta --version
+  - sudo rm /usr/bin/google-chrome
+  - sudo ln -s /usr/bin/google-chrome-beta /usr/bin/google-chrome
+  - npm list
+  - wget https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-64bit-static.tar.xz -O /tmp/ffmpeg-release-64bit-static.tar.xz
+  - tar -xJf /tmp/ffmpeg-release-64bit-static.tar.xz -C /tmp
+  - /tmp/ffmpeg-3.4-64bit-static/ffmpeg -version
+  - sudo mv /tmp/ffmpeg-3.4-64bit-static/ffmpeg /usr/bin/ffmpeg
+addons:
+  chrome: beta
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - libstdc++-4.9-dev
+      - xz-utils

@@ -32,7 +32,7 @@ const ChromeOptions = require('selenium-webdriver/chrome').Options;
 
 const chromedriverBin = process.env.CHROMEDRIVER_BIN || '/usr/bin/chromedriver';
 
-describe('Proxy with chrome pool enabled', () => {
+describe('Proxy with chrome pool enabled no reuse', () => {
   let server;
   let driver;
   let mockServer;
@@ -52,6 +52,7 @@ describe('Proxy with chrome pool enabled', () => {
       chromePool: {
         enable: true,
         reuse: false,
+        chromePath: '/usr/bin/google-chrome-beta',
       },
     };
     server = new HttpServer(config.proxy);
