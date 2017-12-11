@@ -18,6 +18,8 @@
     "LICENSE.txt",
     "index.js",
     "package.json",
+    "package-lock.json",
+    "bin/",
     "lib/"
   ],
   "dependencies": {
