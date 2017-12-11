@@ -21,4 +21,4 @@
 # SOFTWARE.
 
 
-./node_modules/.bin/mocha --exit --timeout 5000
+./node_modules/.bin/mocha --exit --timeout 10000

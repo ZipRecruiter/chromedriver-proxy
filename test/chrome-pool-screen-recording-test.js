@@ -52,7 +52,7 @@ describe('Proxy with screen recording', () => {
       chromePool: {
         enable: true,
         reuse: true,
-        chromePath: '/usr/bin/google-chrome-unstable',
+        chromePath: '/usr/bin/google-chrome-beta',
         chromeAgent: {
           screenRecorder: {
             videoFormat: 'mp4',
