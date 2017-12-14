@@ -32,6 +32,8 @@ const Command = {
   GET_SCREENCAST_PATH: 'getScreencastPath',
   GET_SCREENCAST_S3: 'getScreencastS3',
   SET_HEADERS: 'setHeaders',
+  ADD_SCRIPT: 'addScript',
+  REMOVE_ALL_SCRIPTS: 'removeAllScripts',
 };
 
 function configureExecutor(executor) {
@@ -59,6 +61,16 @@ function configureExecutor(executor) {
     Command.SET_EXTRA_HEADERS,
     'POST',
     '/session/:sessionId/chromedriver-proxy/headers',
+  );
+  executor.defineCommand(
+    Command.ADD_SCRIPT,
+    'POST',
+    '/session/:sessionId/chromedriver-proxy/script',
+  );
+  executor.defineCommand(
+    Command.REMOVE_ALL_SCRIPTS,
+    'DELETE',
+    '/session/:sessionId/chromedriver-proxy/scripts',
   );
 }
 
@@ -106,6 +118,20 @@ class Driver extends Chrome {
     return this.schedule(
       new command.Command(Command.SET_EXTRA_HEADERS).setParameter('headers', headers),
       'ChromeDriverProxy.setExtraHeaders',
+    );
+  }
+
+  addScript(script) {
+    return this.schedule(
+      new command.Command(Command.ADD_SCRIPT).setParameter('scriptSource', script),
+      'ChromeDriverProxy.addScript',
+    );
+  }
+
+  removeAllScripts() {
+    return this.schedule(
+      new command.Command(Command.REMOVE_ALL_SCRIPTS),
+      'ChromeDriverProxy.removeAllScripts',
     );
   }
 }
