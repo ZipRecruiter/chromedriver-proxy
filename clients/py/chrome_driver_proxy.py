@@ -34,6 +34,8 @@ class ChromeDriverProxyRemoteConnection(RemoteConnection):
         self._commands["getScreencastPath"] = ('GET', '/session/$sessionId/chromedriver-proxy/screencast/path')
         self._commands["getScreencastS3"] = ('GET', '/session/$sessionId/chromedriver-proxy/screencast/s3')
         self._commands["setHeaders"] = ('POST', '/session/$sessionId/chromedriver-proxy/headers')
+        self._commands["addScript"] = ('POST', '/session/$sessionId/chromedriver-proxy/script')
+        self._commands["removeAllScripts"] = ('DELETE', '/session/$sessionId/chromedriver-proxy/scripts')
 
 
 class ChromeDriverProxy(wd.Remote):
@@ -60,3 +62,9 @@ class ChromeDriverProxy(wd.Remote):
 
     def set_extra_headers(self, headers):
         self.execute('setHeaders', dict(headers=headers))
+
+    def add_script(self, script):
+        self.execute('addScript', dict(scriptSource=script))
+
+    def remove_all_scripts(self):
+        self.execute('removeAllScripts')

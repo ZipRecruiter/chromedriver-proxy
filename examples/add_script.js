@@ -1,5 +1,3 @@
-
-
 /**
 * Copyright (c) 2017 ZipRecruiter
 *
@@ -22,29 +20,26 @@
 * SOFTWARE.
 * */
 
-const process = require('process');
-const debug = require('debug')('chromedriver_proxy:chrome_agent_slave');
 
-const options = JSON.parse(process.argv[2]);
+const ChromeOptions = require('selenium-webdriver/chrome').Options;
+const Driver = require('../clients/js/chrome_driver_proxy');
 
-if (require.main === module) {
-  debug('successfully forked chrome agent');
-  try {
-    const ChromeAgent = require(options.chromeAgentModule);
-    const chromeAgent = new ChromeAgent(options);
-    process.on('message', (msg) => {
-      const blob = JSON.parse(msg);
-      chromeAgent.handle(blob).then((result) => {
-        process.send(JSON.stringify({ action: 'req', result }));
-      }).catch((err) => {
-        process.send(JSON.stringify({ action: 'req', result: { error: err } }));
-      });
-    });
-    process.send(JSON.stringify({ action: 'init', result: {} }));
-  } catch (err) {
-    debug(err);
-    process.send(JSON.stringify({ action: 'error', result: { error: err } }));
-    process.send(JSON.stringify({ action: 'init', result: { error: err } }));
-    process.exit(1);
-  }
-}
+const chromeOptions = new ChromeOptions();
+chromeOptions.addArguments(
+  // '--headless',
+  // '--disable-gpu',
+  '--disable-xss-auditor',
+  '--no-first-run',
+  '--no-sandbox',
+);
+const options = chromeOptions.toCapabilities();
+
+const driver = Driver.createSession('http://127.0.0.1:4444/wd/hub', options);
+const myScript = 'console.log("inject script");'
+
+driver.addScript(myScript).then((result) => {
+  driver.get('https://google.com');
+}).then(() => driver.sleep(10000))
+  .then(() => {
+    return driver.quit();
+  }).catch(err => console.log(err) );

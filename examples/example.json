@@ -5,7 +5,7 @@
     "baseUrl": "/wd/hub"
   },
   "chromedriver": {
-    "chromedriverPath": "/usr/bin/chromedriver",
+    "chromedriverPath": "/home/jgowan/bin/chromedriver",
     "port": 4445,
     "autoRestart": true
   },

@@ -10,6 +10,7 @@ Chromedriver-Proxy is an extensible proxy to ChromeDriver.
  * Connect to Chromedriver from remote host without modifying the whitelist
  * Record video and upload the video to s3.  Compatible with chrome in headless mode. (chrome 63+)
  * Set extra headers (chrome 64+ [bug](https://bugs.chromium.org/p/chromium/issues/detail?id=767683))
+ * Evaluate script on each page load
  * Provide your own custom extensions.
 
 # Requirements
