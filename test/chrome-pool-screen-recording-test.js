@@ -25,6 +25,7 @@ const chai = require('chai');
 
 const expect = chai.expect;
 const HttpServer = require('..').HttpServer;
+const fs = require('fs');
 
 const Driver = require('../clients/js/chrome_driver_proxy');
 const Chrome = require('selenium-webdriver/chrome').Driver;
@@ -93,7 +94,9 @@ describe('Proxy with screen recording', () => {
     driver.startScreencast({ params: { format: 'jpeg', quality: 80, everyNthFrame: 1 } }).then(() => driver.get(`${mockServerUrl}/base.html`)).then(() => driver.get(`${mockServerUrl}/cookies`)).then(() => driver.stopScreencast())
       .then(result => driver.getScreencastPath())
       .then((result) => {
+        console.log(result);
         expect(result).to.have.property('path');
+        expect(fs.existsSync(result['path'])).to.be.true;
         done();
       })
       .catch((err) => {
