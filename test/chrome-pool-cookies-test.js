@@ -35,7 +35,6 @@ const chromedriverBin = process.env.CHROMEDRIVER_BIN || '/usr/bin/chromedriver';
 describe('Proxy with chrome pool cookie test', () => {
   let server;
   let driver;
-  let mockServer;
   let options;
   const mockServerUrl = 'http://127.0.0.1:8080';
 
@@ -64,7 +63,6 @@ describe('Proxy with chrome pool cookie test', () => {
     };
     server = new HttpServer(config.proxy);
     server.start(config, () => {
-      mockServer = require('../fixtures/server')(8080, () => {
         const chromeOptions = new ChromeOptions();
         chromeOptions.addArguments(
           'headless',
@@ -76,14 +74,11 @@ describe('Proxy with chrome pool cookie test', () => {
 
         driver = Driver.createSession('http://127.0.0.1:4444/wd/hub', options);
         done();
-      });
     });
   });
 
   afterEach((done) => {
-    server.stop(() => {
-      mockServer.close(done);
-    });
+    server.stop(done);
   });
 
   it('can clear cookies between sessions', (done) => {

@@ -36,7 +36,6 @@ const chromedriverBin = process.env.CHROMEDRIVER_BIN || '/usr/bin/chromedriver';
 describe('Proxy with screen recording', () => {
   let server;
   let driver;
-  let mockServer;
   const mockServerUrl = 'http://127.0.0.1:8080';
 
   before((done) => {
@@ -62,15 +61,11 @@ describe('Proxy with screen recording', () => {
       },
     };
     server = new HttpServer(config.proxy);
-    server.start(config, () => {
-      mockServer = require('../fixtures/server')(8080, done);
-    });
+    server.start(config, done);
   });
 
   after((done) => {
-    server.stop(() => {
-      mockServer.close(done);
-    });
+    server.stop(done);
   });
 
   beforeEach(() => {
