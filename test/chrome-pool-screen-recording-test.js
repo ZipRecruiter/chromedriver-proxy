@@ -47,7 +47,7 @@ describe('Proxy with screen recording', () => {
       chromedriver: {
         chromedriverPath: chromedriverBin,
         port: 4445,
-        autoRestart: true,
+        autoRestart: false,
       },
       chromePool: {
         enable: true,

@@ -47,7 +47,7 @@ describe.skip('Proxy with extra headers', () => {
       chromedriver: {
         chromedriverPath: chromedriverBin,
         port: 4445,
-        autoRestart: true,
+        autoRestart: false,
       },
       chromePool: {
         enable: true,

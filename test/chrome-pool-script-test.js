@@ -46,7 +46,7 @@ describe('Proxy with script support', () => {
       chromedriver: {
         chromedriverPath: chromedriverBin,
         port: 4445,
-        autoRestart: true,
+        autoRestart: false,
       },
       chromePool: {
         enable: true,
