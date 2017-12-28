@@ -40,7 +40,7 @@
     "selenium-webdriver": "^3.6.0"
   },
   "scripts": {
-    "test": "(node fixtures/run_server.js &) && eslint bin/chromedriver-proxy index.js lib/*.js && mocha --exit --timeout 10000 && fuser -k 8080/tcp"
+    "test": "./scripts/run-tests.sh"
   },
   "bin": {
     "chromedriver-proxy": "./bin/chromedriver-proxy"

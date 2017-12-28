@@ -46,7 +46,7 @@ describe('Proxy with chrome pool enabled no reuse', () => {
       chromedriver: {
         chromedriverPath: chromedriverBin,
         port: 4445,
-        autoRestart: true,
+        autoRestart: false,
       },
       chromePool: {
         enable: true,
