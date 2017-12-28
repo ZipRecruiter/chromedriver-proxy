@@ -35,7 +35,6 @@ const chromedriverBin = process.env.CHROMEDRIVER_BIN || '/usr/bin/chromedriver';
 describe('Proxy with chrome pool disabled', () => {
   let server;
   let driver;
-  let mockServer;
   const mockServerUrl = 'http://127.0.0.1:8080';
 
   before(function (done) {
@@ -55,15 +54,11 @@ describe('Proxy with chrome pool disabled', () => {
     };
     server = new HttpServer(config.proxy);
     this.timeout(5000);
-    server.start(config, () => {
-      mockServer = require('../fixtures/server')(8080, done);
-    });
+    server.start(config, done);
   });
 
   after((done) => {
-    server.stop(() => {
-      mockServer.close(done);
-    });
+    server.stop(done);
   });
 
   beforeEach(() => {
