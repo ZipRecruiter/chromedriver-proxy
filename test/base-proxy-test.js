@@ -39,6 +39,7 @@ describe('Proxy with chrome pool disabled', () => {
 
   before(function (done) {
     const config = {
+      timeout: 2000,
       proxy: {
         port: 4444,
         baseUrl: '/wd/hub',
