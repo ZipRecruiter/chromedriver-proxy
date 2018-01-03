@@ -34,6 +34,7 @@ const Command = {
   SET_HEADERS: 'setHeaders',
   ADD_SCRIPT: 'addScript',
   REMOVE_ALL_SCRIPTS: 'removeAllScripts',
+  SET_CLEAR_STORAGE: 'setClearStorage',
 };
 
 function configureExecutor(executor) {
@@ -71,6 +72,11 @@ function configureExecutor(executor) {
     Command.REMOVE_ALL_SCRIPTS,
     'DELETE',
     '/session/:sessionId/chromedriver-proxy/scripts',
+  );
+  executor.defineCommand(
+    Command.SET_CLEAR_STORAGE,
+    'POST',
+    '/session/:sessionId/chromedriver-proxy/storage',
   );
 }
 
@@ -132,6 +138,13 @@ class Driver extends Chrome {
     return this.schedule(
       new command.Command(Command.REMOVE_ALL_SCRIPTS),
       'ChromeDriverProxy.removeAllScripts',
+    );
+  }
+
+  setClearStorage(options) {
+    return this.schedule(
+      new command.Command(Command.SET_CLEAR_STORAGE).setParameter('values', options),
+      'ChromeDriverProxy.setClearStorage',
     );
   }
 }
