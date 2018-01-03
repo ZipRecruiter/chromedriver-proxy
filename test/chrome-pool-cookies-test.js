@@ -106,6 +106,33 @@ describe('Proxy with chrome pool cookie test', () => {
       });
   });
 
+  it('can override default for clearing local storage', (done) => {
+    driver.get(`${mockServerUrl}/base.html`).then(() => driver.setClearStorage([])).then(() => driver.get(`${mockServerUrl}/cookies`)).then(() => driver.executeScript('window.localStorage.setItem("foo", "bar")'))
+      .then(() => driver.executeScript('return window.localStorage.getItem("foo")'))
+      .then((value) => {
+        expect(value).to.equal('bar');
+        return driver.quit();
+      })
+      .then(() => {
+        // TODO find a better way to wait for the browser to be available in the pool
+        return driver.sleep(0.5);
+      }).then(() => {
+        driver = Driver.createSession('http://127.0.0.1:4444/wd/hub', options);
+        return driver.get(`${mockServerUrl}/base.html`);
+      })
+      .then(() => driver.executeScript('return window.localStorage.getItem("foo")'))
+      .then((value) => {
+        expect(value).to.equal('bar');
+      })
+      .then(() => driver.quit())
+      .then(() => {
+        done();
+      })
+      .catch((err) => {
+        done(err);
+      });
+  });
+
   it('can clear local storage between sessions', (done) => {
     driver.get(`${mockServerUrl}/base.html`).then(() => driver.manage().addCookie({ name: 'foo', value: 'bar' })).then(() => driver.get(`${mockServerUrl}/cookies`)).then(() => driver.executeScript('window.localStorage.setItem("foo", "bar")'))
       .then(() => driver.executeScript('return window.localStorage.getItem("foo")'))
