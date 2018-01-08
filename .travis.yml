@@ -11,7 +11,7 @@ cache:
     - node_modules
     - chrome
 before_script:
-  - curl https://chromedriver.storage.googleapis.com/2.33/chromedriver_linux64.zip > /tmp/chromedriver_linux64.zip
+  - curl https://chromedriver.storage.googleapis.com/2.34/chromedriver_linux64.zip > /tmp/chromedriver_linux64.zip
   - unzip -d /tmp /tmp/chromedriver_linux64.zip
   - /tmp/chromedriver --version
   - google-chrome-beta --version
