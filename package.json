@@ -1,6 +1,6 @@
 {
   "name": "chromedriver-proxy",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "An extensible proxy to chromedriver",
   "keywords": [
     "selenium",
