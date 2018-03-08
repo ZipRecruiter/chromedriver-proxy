@@ -115,7 +115,7 @@ describe('Proxy with chrome pool cookie test', () => {
       })
       .then(() => {
         // TODO find a better way to wait for the browser to be available in the pool
-        return driver.sleep(0.5);
+        return driver.sleep(5);
       }).then(() => {
         driver = Driver.createSession('http://127.0.0.1:4444/wd/hub', options);
         return driver.get(`${mockServerUrl}/base.html`);
