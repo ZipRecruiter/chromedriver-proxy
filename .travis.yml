@@ -20,8 +20,8 @@ before_script:
   - npm list
   - wget https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-64bit-static.tar.xz -O /tmp/ffmpeg-release-64bit-static.tar.xz
   - tar -xJf /tmp/ffmpeg-release-64bit-static.tar.xz -C /tmp
-  - /tmp/ffmpeg-3.4.1-64bit-static/ffmpeg -version
-  - sudo mv /tmp/ffmpeg-3.4.1-64bit-static/ffmpeg /usr/bin/ffmpeg
+  - /tmp/ffmpeg-3.4.2-64bit-static/ffmpeg -version
+  - sudo mv /tmp/ffmpeg-3.4.2-64bit-static/ffmpeg /usr/bin/ffmpeg
 addons:
   chrome: beta
   apt:
