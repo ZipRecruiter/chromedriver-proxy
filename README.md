@@ -9,6 +9,7 @@ Chromedriver-Proxy is an extensible proxy to ChromeDriver.
  * Reuse browsers.  The browser will be cleaned between each selenium session.
  * Connect to Chromedriver from remote host without modifying the whitelist
  * Record video and upload the video to s3.  Compatible with chrome in headless mode.
+ * Support mp4, webm, and m3u8 video format
  * Set extra headers
  * Evaluate script on each page load
  * Provide your own custom extensions.
