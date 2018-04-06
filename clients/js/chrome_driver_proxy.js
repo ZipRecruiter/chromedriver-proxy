@@ -78,6 +78,11 @@ function configureExecutor(executor) {
     'POST',
     '/session/:sessionId/chromedriver-proxy/storage',
   );
+  executor.defineCommand(
+    Command.NAVIGATE,
+    'POST',
+    '/session/:sessionId/chromedriver-proxy/navigate',
+  );
 }
 
 function createExecutor(url) {
@@ -145,6 +150,13 @@ class Driver extends Chrome {
     return this.schedule(
       new command.Command(Command.SET_CLEAR_STORAGE).setParameter('values', options),
       'ChromeDriverProxy.setClearStorage',
+    );
+  }
+
+  pageNavigate(options) {
+    return this.schedule(
+      new command.Command(Command.NAVIGATE).setParameter('options', options),
+      'ChromeDriverProxy.NAVIGATE',
     );
   }
 }

@@ -37,6 +37,7 @@ class ChromeDriverProxyRemoteConnection(RemoteConnection):
         self._commands["addScript"] = ('POST', '/session/$sessionId/chromedriver-proxy/script')
         self._commands["removeAllScripts"] = ('DELETE', '/session/$sessionId/chromedriver-proxy/scripts')
         self._commands["setClearStorage"] = ('POST', '/session/$sessionId/chromedriver-proxy/storage')
+        self._commands["navigate"] = ('POST', '/session/$sessionId/chromedriver-proxy/navigate')
 
 
 class ChromeDriverProxy(wd.Remote):
@@ -72,3 +73,6 @@ class ChromeDriverProxy(wd.Remote):
 
     def setClearStorage(self, options):
         self.execute('setClearStorage', dict(values=options))
+
+    def navigate(self, options):
+        self.execute('navigate', dict(values=options))
