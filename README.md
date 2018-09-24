@@ -1,7 +1,5 @@
 [![npm version](https://img.shields.io/npm/v/chromedriver-proxy.svg?style=flat-square)](https://www.npmjs.com/package/chromedriver-proxy)
 
-[![Build Status](https://travis-ci.org/ZipRecruiter/chromedriver-proxy.svg?branch=master)](https://travis-ci.org/ZipRecruiter/chromedriver-proxy)
-
 Chromedriver-Proxy is an extensible proxy to ChromeDriver.
 
 # Features
