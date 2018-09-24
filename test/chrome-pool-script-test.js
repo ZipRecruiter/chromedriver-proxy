@@ -120,7 +120,7 @@ describe('Proxy with script support', () => {
   });
 
 
-  it('can remove all scripts', (done) => {
+  xit('can remove all scripts', (done) => {
     driver.addScript('window.FOO="BAR"').then((result) => {
       return driver.get(`${mockServerUrl}/base.html`)
     }).then((result) => {
