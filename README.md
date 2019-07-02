@@ -39,6 +39,7 @@ example configuration:
     "enable": true,
     "chromePath": "/usr/bin/google-chrome",
     "reuse": true, // reuse the browser instances
+    "chromeStartupTimeOut": 1000, // time to wait for chrome to startup
     // chromeAgentModule should extend the builtin ChromeAgent.
     "chromeAgentModule": "path to custom module",
     "clearStorage": [
