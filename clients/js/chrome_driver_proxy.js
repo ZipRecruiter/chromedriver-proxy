@@ -32,6 +32,7 @@ const Command = {
   GET_SCREENCAST_PATH: 'getScreencastPath',
   GET_SCREENCAST_S3: 'getScreencastS3',
   SET_HEADERS: 'setHeaders',
+  SET_USER_AGENT: 'setUserAgent',
   ADD_SCRIPT: 'addScript',
   REMOVE_ALL_SCRIPTS: 'removeAllScripts',
   SET_CLEAR_STORAGE: 'setClearStorage',
@@ -62,6 +63,11 @@ function configureExecutor(executor) {
     Command.SET_EXTRA_HEADERS,
     'POST',
     '/session/:sessionId/chromedriver-proxy/headers',
+  );
+  executor.defineCommand(
+    Command.SET_USER_AGENT,
+    'POST',
+    '/session/:sessionId/chromedriver-proxy/useragent',
   );
   executor.defineCommand(
     Command.ADD_SCRIPT,
@@ -129,6 +135,13 @@ class Driver extends Chrome {
     return this.schedule(
       new command.Command(Command.SET_EXTRA_HEADERS).setParameter('headers', headers),
       'ChromeDriverProxy.setExtraHeaders',
+    );
+  }
+
+  setUserAgent(userAgent) {
+    return this.schedule(
+      new command.Command(Command.SET_USER_AGENT).setParameter('userAgent', userAgent),
+      'ChromeDriverProxy.setUserAgent',
     );
   }
 
