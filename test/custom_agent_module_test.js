@@ -51,7 +51,7 @@ describe('Proxy with chrome pool enabled', () => {
       chromePool: {
         enable: true,
         reuse: true,
-        chromePath: '/usr/bin/google-chrome-beta',
+        chromePath: '/usr/bin/google-chrome',
         chromeAgentModule: 'test/custom_agent_module.js',
       },
     };

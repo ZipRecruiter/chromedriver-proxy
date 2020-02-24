@@ -11,7 +11,7 @@
   },
   "chromePool": {
     "enable": true,
-    "chromePath": "/usr/bin/google-chrome-unstable",
+    "chromePath": "/usr/bin/google-chrome",
     "reuse": true,
     "chromeAgent": {
       "screenRecorder": {

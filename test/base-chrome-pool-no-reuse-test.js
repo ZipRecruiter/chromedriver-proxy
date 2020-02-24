@@ -51,7 +51,7 @@ describe('Proxy with chrome pool enabled no reuse', () => {
       chromePool: {
         enable: true,
         reuse: false,
-        chromePath: '/usr/bin/google-chrome-beta',
+        chromePath: '/usr/bin/google-chrome',
       },
     };
     server = new HttpServer(config.proxy);

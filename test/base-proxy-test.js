@@ -50,7 +50,7 @@ describe('Proxy with chrome pool disabled', () => {
         autoRestart: false,
       },
       chromePool: {
-        chromePath: '/usr/bin/google-chrome-beta',
+        chromePath: '/usr/bin/google-chrome',
         enable: false,
       },
     };
@@ -71,7 +71,7 @@ describe('Proxy with chrome pool disabled', () => {
       'no-first-run',
       'no-sandbox',
     );
-    chromeOptions.setChromeBinaryPath('/usr/bin/google-chrome-beta');
+    chromeOptions.setChromeBinaryPath('/usr/bin/google-chrome');
     const options = chromeOptions.toCapabilities();
 
     driver = Driver.createSession('http://127.0.0.1:4444/wd/hub', options);

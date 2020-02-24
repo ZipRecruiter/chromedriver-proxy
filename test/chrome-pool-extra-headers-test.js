@@ -51,7 +51,7 @@ describe('Proxy with extra headers', () => {
       chromePool: {
         enable: true,
         reuse: true,
-        chromePath: '/usr/bin/google-chrome-beta',
+        chromePath: '/usr/bin/google-chrome',
       },
     };
     server = new HttpServer(config.proxy);
