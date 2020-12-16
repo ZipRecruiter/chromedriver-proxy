@@ -1,6 +1,6 @@
 {
   "name": "chromedriver-proxy",
-  "version": "0.13.0",
+  "version": "0.14.0",
   "description": "An extensible proxy to chromedriver",
   "keywords": [
     "selenium",
@@ -23,21 +23,21 @@
     "lib/"
   ],
   "dependencies": {
-    "aws-sdk": "^2.486.0",
+    "aws-sdk": "^2.811.0",
     "chrome-remote-interface": "^0.27.2",
-    "commander": "^2.20.0",
-    "debug": "^3.2.6",
+    "commander": "^2.20.3",
+    "debug": "^3.2.7",
     "get-port": "^3.2.0",
-    "http-proxy": "^1.17.0",
+    "http-proxy": "^1.18.1",
     "package.json": "^2.0.1",
-    "yarn": "^1.17.2"
+    "yarn": "^1.22.10"
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "eslint": "^6.0.1",
+    "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-plugin-import": "^2.18.0",
-    "js-yaml": "^3.13.1",
+    "eslint-plugin-import": "^2.22.1",
+    "js-yaml": "^3.14.1",
     "mocha": "^4.1.0",
     "node-simple-router": "^0.10.2",
     "selenium-webdriver": "^3.6.0"
