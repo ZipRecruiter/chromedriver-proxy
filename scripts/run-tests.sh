@@ -24,4 +24,4 @@ export DEBUG=chromedriver_proxy:*
 
 fuser -k 8080/tcp
 
-(node fixtures/run_server.js &) && eslint bin/chromedriver-proxy index.js lib/*.js && mocha --exit --timeout 10000 && fuser -k 8080/tcp
+(node fixtures/run_server.js &) && mocha --exit --timeout 10000 && fuser -k 8080/tcp
