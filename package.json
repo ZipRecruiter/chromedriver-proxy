@@ -40,7 +40,7 @@
     "js-yaml": "^3.14.1",
     "mocha": "^9.2.2",
     "node-simple-router": "^0.10.2",
-    "selenium-webdriver": "^3.6.0"
+    "selenium-webdriver": "^4.1.0"
   },
   "scripts": {
     "test": "./scripts/run-tests.sh"

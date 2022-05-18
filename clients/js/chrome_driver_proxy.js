@@ -25,6 +25,7 @@
 const Chrome = require('selenium-webdriver/chrome').Driver;
 const http = require('selenium-webdriver/http');
 const command = require('selenium-webdriver/lib/command');
+const Capabilities = require('selenium-webdriver/lib/capabilities').Capabilities;
 
 const Command = {
   START_SCREENCAST: 'startScreencast',
@@ -98,76 +99,86 @@ function createExecutor(url) {
   return executor;
 }
 
+
 class Driver extends Chrome {
-  static createSession(url, optConfig) {
-    return super.createSession(optConfig, createExecutor(Promise.resolve(url)), null);
+
+  static createSession(url, opts) {
+    const caps = Capabilities.chrome();
+    caps.merge(opts);
+
+    let client = Promise.resolve(url).then(
+      (url) => new http.HttpClient(url)
+    )
+    let executor = new http.Executor(client);
+
+    return super.createSession(caps, createExecutor(Promise.resolve(url)), null);;
   }
 
   startScreencast(params) {
-    return this.schedule(
+    return this.execute(
       new command.Command(Command.START_SCREENCAST).setParameters(params),
       'ChromeDriverProxy.startScreencast',
     );
   }
 
   stopScreencast() {
-    return this.schedule(
+    return this.execute(
       new command.Command(Command.STOP_SCREENCAST),
       'ChromeDriverProxy.stopScreencast',
     );
   }
 
   getScreencastPath() {
-    return this.schedule(
+    return this.execute(
       new command.Command(Command.GET_SCREENCAST_PATH),
       'ChromeDriverProxy.getScreencastPath',
     );
   }
 
   getScreencastS3() {
-    return this.schedule(
+    return this.execute(
       new command.Command(Command.GET_SCREENCAST_S3),
       'ChromeDriverProxy.getScreencastS3',
     );
   }
 
   setExtraHeaders(headers) {
-    return this.schedule(
+    return this.execute(
       new command.Command(Command.SET_EXTRA_HEADERS).setParameter('headers', headers),
       'ChromeDriverProxy.setExtraHeaders',
     );
   }
 
   setUserAgent(userAgent) {
-    return this.schedule(
+    return this.execute(
       new command.Command(Command.SET_USER_AGENT).setParameter('userAgent', userAgent),
       'ChromeDriverProxy.setUserAgent',
     );
   }
 
   addScript(script) {
-    return this.schedule(
+    return this.execute(
       new command.Command(Command.ADD_SCRIPT).setParameter('scriptSource', script),
       'ChromeDriverProxy.addScript',
     );
   }
 
   removeAllScripts() {
-    return this.schedule(
+    return this.execute(
       new command.Command(Command.REMOVE_ALL_SCRIPTS),
       'ChromeDriverProxy.removeAllScripts',
     );
   }
 
   setClearStorage(options) {
-    return this.schedule(
+    return this.execute(
       new command.Command(Command.SET_CLEAR_STORAGE).setParameter('values', options),
       'ChromeDriverProxy.setClearStorage',
     );
   }
 
   pageNavigate(options) {
-    return this.schedule(
+    return this.execute(
       new command.Command(Command.NAVIGATE).setParameter('options', options),
       'ChromeDriverProxy.NAVIGATE',
     );

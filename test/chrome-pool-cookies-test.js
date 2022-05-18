@@ -36,6 +36,7 @@ describe('Proxy with chrome pool cookie test', () => {
   let server;
   let driver;
   let options;
+  let chromeOptions;
   const mockServerUrl = 'http://127.0.0.1:8080';
 
   beforeEach((done) => {
@@ -63,17 +64,18 @@ describe('Proxy with chrome pool cookie test', () => {
     };
     server = new HttpServer(config.proxy);
     server.start(config, () => {
-        const chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments(
-          'headless',
-          'disable-gpu',
-          'no-first-run',
-          'no-sandbox',
-        );
-        options = chromeOptions.toCapabilities();
+      chromeOptions = new ChromeOptions();
+      chromeOptions.addArguments(
+        '--headless',
+        '--disable-gpu',
+        '--no-first-run',
+        '--no-sandbox',
+        '--disable-dev-shm-usage',
+      );
+      chromeOptions.setChromeBinaryPath('/usr/bin/google-chrome');
 
-        driver = Driver.createSession('http://127.0.0.1:4444/wd/hub', options);
-        done();
+      driver = Driver.createSession('http://127.0.0.1:4444/wd/hub', chromeOptions);
+      done();
     });
   });
 
@@ -90,10 +92,14 @@ describe('Proxy with chrome pool cookie test', () => {
         return driver.quit();
       })
       .then(() => {
-        driver = Driver.createSession('http://127.0.0.1:4444/wd/hub', options);
+        driver = Driver.createSession('http://127.0.0.1:4444/wd/hub', chromeOptions);
         return driver.get(`${mockServerUrl}/base.html`);
       })
-      .then(() => driver.manage().getCookie('foo'))
+      .then(() => {
+        return driver.manage().getCookie('foo').catch((err) => {
+          return null;
+        });
+      })
       .then((cookie) => {
         expect(cookie).to.be.null;
       })
@@ -117,7 +123,7 @@ describe('Proxy with chrome pool cookie test', () => {
         // TODO find a better way to wait for the browser to be available in the pool
         return driver.sleep(5);
       }).then(() => {
-        driver = Driver.createSession('http://127.0.0.1:4444/wd/hub', options);
+        driver = Driver.createSession('http://127.0.0.1:4444/wd/hub', chromeOptions);
         return driver.get(`${mockServerUrl}/base.html`);
       })
       .then(() => driver.executeScript('return window.localStorage.getItem("foo")'))
@@ -141,7 +147,7 @@ describe('Proxy with chrome pool cookie test', () => {
         return driver.quit();
       })
       .then(() => {
-        driver = Driver.createSession('http://127.0.0.1:4444/wd/hub', options);
+        driver = Driver.createSession('http://127.0.0.1:4444/wd/hub', chromeOptions);
         return driver.get(`${mockServerUrl}/base.html`);
       })
       .then(() => driver.executeScript('return window.localStorage.getItem("foo")'))
@@ -163,7 +169,7 @@ describe('Proxy with chrome pool cookie test', () => {
       return driver.quit();
     })
       .then(() => {
-        driver = Driver.createSession('http://127.0.0.1:4444/wd/hub', options);
+        driver = Driver.createSession('http://127.0.0.1:4444/wd/hub', chromeOptions);
         return driver.get(`${mockServerUrl}/base.html`);
       })
       .then(() => driver.getAllWindowHandles())

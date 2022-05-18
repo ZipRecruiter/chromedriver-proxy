@@ -76,9 +76,8 @@ describe('Proxy with screen recording', () => {
       'no-first-run',
       'no-sandbox',
     );
-    const options = chromeOptions.toCapabilities();
 
-    driver = Driver.createSession('http://127.0.0.1:4444/wd/hub', options);
+    driver = Driver.createSession('http://127.0.0.1:4444/wd/hub', chromeOptions);
   });
 
   afterEach((done) => {
