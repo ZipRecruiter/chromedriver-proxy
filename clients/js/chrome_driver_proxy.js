@@ -85,11 +85,11 @@ function configureExecutor(executor) {
     'POST',
     '/session/:sessionId/chromedriver-proxy/storage',
   );
-  executor.defineCommand(
-    Command.NAVIGATE,
-    'POST',
-    '/session/:sessionId/chromedriver-proxy/navigate',
-  );
+  // executor.defineCommand(
+  //   Command.NAVIGATE,
+  //   'POST',
+  //   '/session/:sessionId/chromedriver-proxy/navigate',
+  // );
 }
 
 function createExecutor(url) {
@@ -177,12 +177,12 @@ class Driver extends Chrome {
     );
   }
 
-  pageNavigate(options) {
-    return this.execute(
-      new command.Command(Command.NAVIGATE).setParameter('options', options),
-      'ChromeDriverProxy.NAVIGATE',
-    );
-  }
+  // pageNavigate(options) {
+  //   return this.execute(
+  //     new command.Command(Command.NAVIGATE).setParameter('options', options),
+  //     'ChromeDriverProxy.NAVIGATE',
+  //   );
+  // }
 }
 
 module.exports = Driver;

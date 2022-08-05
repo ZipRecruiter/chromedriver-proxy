@@ -80,8 +80,8 @@ describe('Proxy with extra headers', () => {
   });
 
   // need chrome 64+ see https://bugs.chromium.org/p/chromium/issues/detail?id=767683
-  it.skip('can add extra headers', (done) => {
-    driver.get(`${mockServerUrl}/base.html`).then(() => driver.setExtraHeaders({ Foo: 'bar' })).then(() => driver.get(`${mockServerUrl}/headers`)).then(() => driver.getPageSource())
+  it('can add extra headers', (done) => {
+    driver.get(`${mockServerUrl}/base.html`).then(() => { return driver.setExtraHeaders({ Foo: 'bar' }); }).then(() => driver.get(`${mockServerUrl}/headers`)).then(() => driver.getPageSource())
       .then((source) => {
         console.log(source);
         return driver.findElement({ css: '#foo span.value' });
