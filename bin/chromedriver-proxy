@@ -27,7 +27,7 @@ const { HttpServer } = require('..');
 const fs = require('fs');
 
 program
-  .version('1.0.3')
+  .version('1.0.4')
   .option('--config [value]', 'json config file')
   .parse(process.argv);
 
